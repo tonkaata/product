@@ -39,6 +39,6 @@ class ProductSpider(scrapy.Spider):
 		productData['size'] = [a["value"] for a in pickedColorData["sizes"]][1:]
 		#productData['size'] = [a["value"] for a in pickedColorData["sizes"] if 'available' in a.keys()]#In case only available sizes needed
 
-		yield productData #productdata.json file is created with the output with command scrapy crawl product -o productdata.json
+		yield productData #productdata.json file exported via pipelines.py
 
 

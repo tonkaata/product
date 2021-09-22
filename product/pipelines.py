@@ -6,8 +6,18 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-
+import json
 
 class ProductPipeline:
-    def process_item(self, item, spider):
+    def process_item(self, item, spider):  # default method
+        # calling dumps to create json data.
+        line = json.dumps(dict(item)) + "\n"
+        # converting item to dict above, since dumps only intakes dict.
+        self.file.write(line)                    # writing content in output file.
         return item
+  
+    def open_spider(self, spider):
+        self.file = open('productdata.json', 'w')
+  
+    def close_spider(self, spider):
+        self.file.close()
